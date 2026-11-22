@@ -23,3 +23,9 @@ export const productoBase = z.object({
     'Selecciona una categoria valida'
   )
 })
+
+export const productoRespuesta = productoBase.extend({
+  id: z.number().int().positive()
+})
+
+export const productosRespuesta = z.array(productoRespuesta)

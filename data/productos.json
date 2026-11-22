@@ -10,5 +10,35 @@
     "name": "Comida de perro",
     "quantity": 1,
     "category": "Animales"
+  },
+  {
+    "id": 4,
+    "name": "manzana",
+    "quantity": 1,
+    "category": "Alimentacion"
+  },
+  {
+    "id": 5,
+    "name": "platano",
+    "quantity": 7,
+    "category": "Alimentacion"
+  },
+  {
+    "id": 6,
+    "name": "Petit suisse",
+    "quantity": 28,
+    "category": "Alimentacion"
+  },
+  {
+    "id": 7,
+    "name": "Don Limpio",
+    "quantity": 5,
+    "category": "Limpieza"
+  },
+  {
+    "id": 8,
+    "name": "Alpiste",
+    "quantity": 4,
+    "category": "Animales"
   }
 ]
