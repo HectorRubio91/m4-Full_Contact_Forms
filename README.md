@@ -5,7 +5,7 @@ _«Valida o muere.»_
 
 ## Como probarlo
 
-Para que pueda funcionar la pagina web hay que iniciar tanto la pagina web con npm run dev como el server de la API npm run server, si no la pagina dira que no se puede conectar con la API. Tambien se puede usar el comando npm run test:corruptos para probar como coge los productos corruptos de la lista. La pagina en si es una simple lista de la compra en la que puedes añadir los productos que quieras poniendo su nombre, la cantidad y de que categoria(alimento, limpieza, higiene, animales, otro) es y esto se guardara en la lista de productos de la API, y se guarda entre usos de la web. Tambien se pueden borrar articulos de la lista de la compra.
+Para que pueda funcionar la pagina web hay que iniciar tanto la pagina web con npm run dev como el server de la API npm run server, si no la pagina dira que no se puede conectar con la API. Tambien se puede usar el comando npm run test:corruptos para probar como coge los productos corruptos de la lista. La pagina en si es una simple lista de la compra en la que puedes añadir los productos que quieras poniendo su nombre, la cantidad y de que categoria(alimento, limpieza, higiene, animales, otro) es y esto se guardara en la lista de productos de la API, y se guarda entre usos de la web. 
 
 ## Uso de IA
 

@@ -62,34 +62,6 @@ app.post('/api/productos', (req, res) => {
   }
 })
 
-app.delete('/api/productos/:id', (req, res) => {
-  try {
-    const productos = leerProductos()
-    const id = Number(req.params.id)
-
-    const indice = productos.findIndex(
-      producto => producto.id === id
-    )
-
-    if (indice === -1) {
-      return res.status(404).json({
-        message: 'No se ha encontrado el producto'
-      })
-    }
-
-    const productoEliminado = productos[indice]
-
-    productos.splice(indice, 1)
-    guardarProductos(productos)
-
-    res.json(productoEliminado)
-  } catch (error) {
-    res.status(500).json({
-      message: 'Error al eliminar el producto'
-    })
-  }
-})
-
 app.listen(PORT, () => {
   console.log(`API funcionando en http://localhost:${PORT}`)
 })

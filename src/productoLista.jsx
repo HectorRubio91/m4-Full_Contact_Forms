@@ -1,8 +1,4 @@
-export default function ProductoLista({
-  productos,
-  onDeleteProduct,
-  eliminando
-}) {
+export default function ProductoLista({ productos }) {
   return (
     <section>
       <h2>Productos guardados</h2>
@@ -18,15 +14,6 @@ export default function ProductoLista({
               Cantidad: {producto.quantity}
               {' - '}
               Categoria: {producto.category}
-              {' '}
-
-              <button
-                type="button"
-                onClick={() => onDeleteProduct(producto.id)}
-                disabled={eliminando}
-              >
-                Eliminar
-              </button>
             </li>
           ))}
         </ul>
