@@ -1,10 +1,21 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { obtenerProductos, crearProducto } from './productoService'
+import {
+  useQuery,
+  useMutation,
+  useQueryClient
+} from '@tanstack/react-query'
+
+import {
+  obtenerProductos,
+  crearProducto
+} from './productoService'
+
+// Clave compartida para las consultas de productos
+export const PRODUCTOS_QUERY_KEY = ['productos']
 
 // Consultar los productos
 export function useProductos() {
   return useQuery({
-    queryKey: ['productos'],
+    queryKey: PRODUCTOS_QUERY_KEY,
     queryFn: obtenerProductos
   })
 }
@@ -16,8 +27,8 @@ export function useAgregarProducto() {
   return useMutation({
     mutationFn: crearProducto,
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ['productos']
+      return queryClient.invalidateQueries({
+        queryKey: PRODUCTOS_QUERY_KEY
       })
     }
   })

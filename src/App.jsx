@@ -1,19 +1,44 @@
-import ProductoForm from './ProductoForm'
-import ProductoLista from './ProductoLista'
-import { useProductos, useAgregarProducto } from './useProductos'
+import { useEffect, useState } from 'react'
+
+import ProductoForm from './productoForm'
+import ProductoLista from './productoLista'
+
+import {
+  useProductos,
+  useAgregarProducto
+} from './useProductos'
 
 export default function App() {
   const {
     data: productos = [],
     isLoading,
     isError,
-    error
+    error,
+    refetch,
+    isFetching
   } = useProductos()
 
   const agregarMutation = useAgregarProducto()
 
+  const [mostrarExito, setMostrarExito] = useState(false)
+
+  // Ocultar el mensaje de exito despues de 3 segundos
+  useEffect(() => {
+    if (!mostrarExito) {
+      return
+    }
+
+    const temporizador = setTimeout(() => {
+      setMostrarExito(false)
+    }, 3000)
+
+    return () => clearTimeout(temporizador)
+  }, [mostrarExito])
+
   async function agregarProducto(producto) {
+    setMostrarExito(false)
     await agregarMutation.mutateAsync(producto)
+    setMostrarExito(true)
   }
 
   return (
@@ -22,21 +47,31 @@ export default function App() {
 
       <ProductoForm onAddProduct={agregarProducto} />
 
-      {agregarMutation.isSuccess && (
-        <p role="status">Producto añadido correctamente.</p>
-      )}
-
-      {agregarMutation.isError && (
-        <p role="alert">{agregarMutation.error.message}</p>
+      {mostrarExito && (
+        <p role="status">
+          Producto añadido correctamente.
+        </p>
       )}
 
       <section>
-        {isLoading && <p>Cargando productos...</p>}
+        {isLoading && (
+          <p>Cargando productos...</p>
+        )}
 
         {isError && (
-          <p role="alert">
-            Error al cargar los productos: {error.message}
-          </p>
+          <div>
+            <p role="alert">
+              Error al cargar los productos: {error.message}
+            </p>
+
+            <button
+              type="button"
+              onClick={() => refetch()}
+              disabled={isFetching}
+            >
+              {isFetching ? 'Reintentando...' : 'Reintentar'}
+            </button>
+          </div>
         )}
 
         {!isLoading && !isError && (

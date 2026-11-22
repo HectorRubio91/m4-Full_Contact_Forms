@@ -7,6 +7,8 @@ export default function ProductoForm({ onAddProduct }) {
     register,
     handleSubmit,
     reset,
+    setError,
+    clearErrors,
     formState: { errors, isSubmitting }
   } = useForm({
     resolver: zodResolver(productoBase),
@@ -18,11 +20,16 @@ export default function ProductoForm({ onAddProduct }) {
   })
 
   async function enviarProducto(data) {
+    clearErrors('root.server')
+
     try {
       await onAddProduct(data)
       reset()
     } catch (error) {
-
+      setError('root.server', {
+        type: 'server',
+        message: error.message || 'No se pudo guardar el producto'
+      })
     }
   }
 
@@ -85,6 +92,12 @@ export default function ProductoForm({ onAddProduct }) {
           </p>
         )}
       </div>
+
+      {errors.root?.server && (
+        <p role="alert">
+          {errors.root.server.message}
+        </p>
+      )}
 
       <button type="submit" disabled={isSubmitting}>
         {isSubmitting ? 'Enviando...' : 'Añadir producto'}
