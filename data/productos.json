@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "id": 1,
+    "name": "Leche",
+    "quantity": 2,
+    "category": "Alimentacion"
+  },
+  {
+    "id": 3,
+    "name": "Comida de perro",
+    "quantity": 1,
+    "category": "Animales"
+  }
+]

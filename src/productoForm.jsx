@@ -18,8 +18,12 @@ export default function ProductoForm({ onAddProduct }) {
   })
 
   async function enviarProducto(data) {
-    await onAddProduct(data)
-    reset()
+    try {
+      await onAddProduct(data)
+      reset()
+    } catch (error) {
+
+    }
   }
 
   return (
