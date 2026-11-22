@@ -76,3 +76,32 @@ export async function crearProducto(producto) {
 
   return resultado.data
 }
+
+// Eliminar un producto
+export async function eliminarProducto(id) {
+  const response = await fetch(`${API_URL}/${id}`, {
+    method: 'DELETE'
+  })
+
+  if (!response.ok) {
+    const mensaje = await obtenerMensajeError(
+      response,
+      'Error al eliminar el producto'
+    )
+
+    throw new Error(mensaje)
+  }
+
+  const data = await response.json()
+
+  const resultado = productoRespuesta.safeParse(data)
+
+  if (!resultado.success) {
+    throw new Error(
+      'La API ha devuelto un producto no valido: ' +
+      resultado.error.issues[0].message
+    )
+  }
+
+  return resultado.data
+}
